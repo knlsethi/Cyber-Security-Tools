@@ -45,4 +45,20 @@ openssl dgst -sha1 -verify pubkey-B.pem -sign signature.bin recmsg.txt
 // to verify that the received message was send by the particular sender
 ```
 
-If the hash value and message matches it shows "Verified OK" on the screen or else "Verification Failure". 
+If the hash value and message matches it shows "Verified OK" on the screen or else "Verification Failure".
+
+## PenTBox Honeypot
+
+In computer terminology, a honeypot is a computer security mechanism set to detect, deflect, or, in some manner, counteract attempts at unauthorized use of information systems. Generally, a honeypot consists of data (for example, in a network site) that appears to be a legitimate part of the site, but is actually isolated and monitored, and that seems to contain information or a resource of value to attackers, who are then blocked.
+
+```
+sudo ruby pentbox.rb
+// open the pentbox ruby file using admin privileges.
+
+// select the 2 option Network Security
+// open the 3 option Honeypot
+
+// configure the honeypot using various honeypot
+
+//this will then store the details of various intrusions
+```
