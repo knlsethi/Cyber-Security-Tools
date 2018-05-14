@@ -62,3 +62,11 @@ sudo ruby pentbox.rb
 
 //this will then store the details of various intrusions
 ```
+
+## Canary Tokens Honeypot
+
+Canarytokens are a simple way to tripwire things. An old concept, they can be super useful (and are trivial to use) but require some background infrastructure to get working.This infrastructure is provided for the user, so the user can deploy tokens in seconds and get the benefit from them immediately.
+
+Canary Tokens are provided for various filetypes like Word documents, pdfs etc; networks.
+
+After generating a canary token if any person opens this file then the user will immediately be notified. This helps the user to check whether it was an authorised access or an intrusion.
