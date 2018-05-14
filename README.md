@@ -56,7 +56,7 @@ sudo ruby pentbox.rb
 // open the pentbox ruby file using admin privileges.
 
 // select the 2 option Network Security
-// open the 3 option Honeypot
+// select the 3 option Honeypot
 
 // configure the honeypot using various honeypot
 
