@@ -1,29 +1,23 @@
-## Welcome to GitHub Pages
+## RSA Algorithm
 
-You can use the [editor on GitHub](https://github.com/knlsethi/Cyber-Security-Tools/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+RSA is an algorithm used by modern computers to encrypt and decrypt messages. It is an asymmetric cryptographic algorithm. Asymmetric means that there are two different keys. This is also called public key cryptography, because one of them can be given to everyone.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
-
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+To create RSA we will use OpenSSL library:
 
 ```markdown
-Syntax highlighted code block
 
-# Header 1
-## Header 2
-### Header 3
+openssl genpkey -algorithm RSA -pkeyopt rsa_keygen_bits:2048 -pkeyopt rsa_keygen_pubexp:3 -out privkey-A.pem // creates Private Key privkey-A.pem
 
-- Bulleted
-- List
+openssl pkey -in privkey-A.pem -text | less // to view the Private Key dissociated in various parts like modulus, prime1, prime 2
 
-1. Numbered
-2. List
+openssl pkey -in privkey-A.pem -out pubkey-A.pem -pubout // to generate the Public Key pubkey-A.pem corresponding to privkey-A.pem
 
-**Bold** and _Italic_ and `Code` text
+openssl pkey -in pubkey-A.pem -pubin -text | less // to view the Private Key dissociated in various parts like modulus, public exponent
 
-[Link](url) and ![Image](src)
+openssl pkeyutl -encrypt -in message.txt -pubin -inkey pubkey.pem -out cipher.bin // to encrypt message.txt using pubkey-A.pem and storing the corresponding binary file as cipher.bin
+
+opeenssl pkeyutl -decrypt -in cipher.bin -inkey privkey-A.pem -out recmsg.txt // to decrypt cipher.bin using privkey-A.pem and storing the corresponding text file as recmsg.txt
+
 ```
 
 For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
