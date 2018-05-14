@@ -5,7 +5,6 @@ RSA is an algorithm used by modern computers to encrypt and decrypt messages. It
 To create RSA we will use OpenSSL library:
 
 ```markdown
-
 openssl genpkey -algorithm RSA -pkeyopt rsa_keygen_bits:2048 -pkeyopt rsa_keygen_pubexp:3 -out privkey-A.pem 
 // creates Private Key privkey-A.pem
 
@@ -25,13 +24,25 @@ opeenssl pkeyutl -decrypt -in cipher.bin -inkey privkey-A.pem -out recmsg.txt
 // to decrypt cipher.bin using privkey-A.pem and storing the corresponding text file as recmsg.txt
 
 ```
+## SHA1 Hash Function
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+In cryptography, SHA-1 (Secure Hash Algorithm 1) is a cryptographic hash function which takes an input and produces a 160-bit (20-byte) hash value known as a message digest - typically rendered as a hexadecimal number, 40 digits long. It was designed by the United States National Security Agency, and is a U.S. Federal Information Processing Standard.
 
-### Jekyll Themes
+To create SHA1 Hash Function we will use OpenSSL library:
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/knlsethi/Cyber-Security-Tools/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+```
+openssl genpkey -algorithm RSA -pkeyopt rsa_keygen_bits:2048 -pkeyopt rsa_keygen_pubexp:3 -out privkey-B.pem
+openssl pkey -in privkey-B.pem -out pubkey-B.pem -pubout
+// generate a set of private and public key
 
-### Support or Contact
+openssl dgst -sha1 message.txt
+// to view the Hash value of the message
 
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+openssl dgst -sign privkey-B.pem -out signature.bin message.txt
+// to encrypt the Hash value into a binary file signature.bin
+
+openssl dgst -sha1 -verify pubkey-B.pem -sign signature.bin recmsg.txt
+// to verify that the received message was send by the particular sender
+```
+
+If the hash value and message matches it shows "Verified OK" on the screen or else "Verification Failure". 
