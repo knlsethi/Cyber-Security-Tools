@@ -6,17 +6,23 @@ To create RSA we will use OpenSSL library:
 
 ```markdown
 
-openssl genpkey -algorithm RSA -pkeyopt rsa_keygen_bits:2048 -pkeyopt rsa_keygen_pubexp:3 -out privkey-A.pem // creates Private Key privkey-A.pem
+openssl genpkey -algorithm RSA -pkeyopt rsa_keygen_bits:2048 -pkeyopt rsa_keygen_pubexp:3 -out privkey-A.pem 
+// creates Private Key privkey-A.pem
 
-openssl pkey -in privkey-A.pem -text | less // to view the Private Key dissociated in various parts like modulus, prime1, prime 2
+openssl pkey -in privkey-A.pem -text | less 
+// to view the Private Key dissociated in various parts like modulus, prime1, prime 2
 
-openssl pkey -in privkey-A.pem -out pubkey-A.pem -pubout // to generate the Public Key pubkey-A.pem corresponding to privkey-A.pem
+openssl pkey -in privkey-A.pem -out pubkey-A.pem -pubout 
+// to generate the Public Key pubkey-A.pem corresponding to privkey-A.pem
 
-openssl pkey -in pubkey-A.pem -pubin -text | less // to view the Private Key dissociated in various parts like modulus, public exponent
+openssl pkey -in pubkey-A.pem -pubin -text | less 
+// to view the Private Key dissociated in various parts like modulus, public exponent
 
-openssl pkeyutl -encrypt -in message.txt -pubin -inkey pubkey.pem -out cipher.bin // to encrypt message.txt using pubkey-A.pem and storing the corresponding binary file as cipher.bin
+openssl pkeyutl -encrypt -in message.txt -pubin -inkey pubkey.pem -out cipher.bin 
+// to encrypt message.txt using pubkey-A.pem and storing the corresponding binary file as cipher.bin
 
-opeenssl pkeyutl -decrypt -in cipher.bin -inkey privkey-A.pem -out recmsg.txt // to decrypt cipher.bin using privkey-A.pem and storing the corresponding text file as recmsg.txt
+opeenssl pkeyutl -decrypt -in cipher.bin -inkey privkey-A.pem -out recmsg.txt 
+// to decrypt cipher.bin using privkey-A.pem and storing the corresponding text file as recmsg.txt
 
 ```
 
